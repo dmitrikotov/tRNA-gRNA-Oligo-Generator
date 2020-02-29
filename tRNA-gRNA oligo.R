@@ -2,7 +2,10 @@
 
 library(Biostrings)
 
+#set working directory to the folder containing the CSV file with guide sequences. This folder will also be the output folder.
 setwd("~/Documents/tRNA-gRNA Oligos")
+
+#change csv file name to whatever file contains input guide sequences.
 guides <- read.csv("Jessica Guides 021220.csv")
 
 Aar1_tRNA = "TATCACCTGCCCCC"
