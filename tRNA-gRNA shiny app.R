@@ -13,6 +13,12 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
       
+      # Input: Filename for output ----
+      textInput("inputid1","Name your output file (end it with .csv"),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
       # Input: Select a file ----
       fileInput("file1", "Choose CSV File",
                 multiple = TRUE,
@@ -97,7 +103,7 @@ server <- function(input, output, Aar1_rep, Aar1_tRNA, tRNA, rep) {
      results[i,1] <- as.character(df[i,1])
    }
    
-   write.csv(as.data.frame(results),file="tRNA-gRNA oligo.csv",quote=F)
+   write.csv(as.data.frame(results),file=input$inputid1,quote=F)
   })
   
 }
