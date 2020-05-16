@@ -89,11 +89,21 @@ server <- function(input, output, Aar1_rep, Aar1_tRNA, tRNA, rep) {
     
     req(input$file1)
     
+    validate({
+      need(input$inputid1 != "", "Please provide output file name")
+    })
+    
+    inputid1_size <- nchar(input$inputid1)
+    
+    validate({
+      need(substr(input$inputid1,inputid1_size-3,inputid1_size) == ".csv", "Please add .csv to output file name")
+    })
+    
     df <- read.csv(input$file1$datapath,
                    header = input$header,
                    sep = input$sep,
                    quote = input$quote)
-
+    
    results <- as.data.frame(matrix(0, nrow(df), 3))
    colnames(results) <- c("gene","tRNA_oligo","rep_oligo")
    
